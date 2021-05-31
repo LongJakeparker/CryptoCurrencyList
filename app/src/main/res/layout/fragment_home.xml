@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.coinhako.screen.home.HomeViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/royal_blue"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:elevation="0dp"
+                app:expanded="false"
+                tools:expanded="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:contentScrim="@color/royal_blue"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:scrimAnimationDuration="200">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvLuckyCoins"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:layout_marginTop="108dp"
+                        android:layout_marginBottom="@dimen/view_margin_m"
+                        android:adjustViewBounds="true"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:overScrollMode="never"
+                        android:paddingHorizontal="@dimen/view_margin_s"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_collapseMode="parallax"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:listitem="@layout/item_lucky_coins" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/royal_blue"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="@dimen/view_margin_s"
+                            android:paddingBottom="@dimen/view_margin_l">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvTitle"
+                                style="@style/Theme.TextCollapsingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/view_margin_s"
+                                android:gravity="center_vertical"
+                                android:text="Hello There!"
+                                android:textSize="22dp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvTitleLuckyCoin"
+                                style="@style/Theme.TextCollapsingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/view_margin_m"
+                                android:text="@{viewModel.textTitleLuckyCoins}"
+                                android:textSize="@dimen/text_size_medium"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                                tools:text="@string/text_title_lucky_coins" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivSearch"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{viewModel.clickSearchListener}"
+                                android:padding="@dimen/view_margin_s"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintEnd_toStartOf="@id/ivNightMode"
+                                app:layout_constraintTop_toTopOf="@id/ivNightMode"
+                                app:srcCompat="@drawable/ic_search"
+                                app:tint="@color/white" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivNightMode"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/view_margin_s"
+                                android:onClick="@{viewModel.clickSettingNightModeListener}"
+                                android:padding="@dimen/view_margin_s"
+                                app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/tvTitle"
+                                app:srcCompat="@drawable/ic_night_mode"
+                                app:tint="@color/white" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_top_corners"
+                    android:paddingHorizontal="@dimen/view_margin_m"
+                    android:paddingTop="@dimen/view_margin_ml"
+                    android:paddingBottom="@dimen/view_margin_s"
+                    android:text="@string/text_title_list_currency"
+                    android:textSize="@dimen/text_size_medium" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCurrencies"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBackground"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/loadingView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBackground"
+                    android:visibility="gone"
+                    app:shimmer_duration="1500">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_crypto_currency_placeholder" />
+
+                        <include layout="@layout/item_crypto_currency_placeholder" />
+
+                        <include layout="@layout/item_crypto_currency_placeholder" />
+
+                        <include layout="@layout/item_crypto_currency_placeholder" />
+
+                        <include layout="@layout/item_crypto_currency_placeholder" />
+
+                        <include layout="@layout/item_crypto_currency_placeholder" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <View
+                    android:id="@+id/disableDragView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:onClick="@{null}"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/llError"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorBackground"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:gravity="center"
+                        android:text="@string/text_error" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_margin_m"
+                        app:srcCompat="@drawable/ic_sad" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/view_margin_ml"
+                        android:background="@drawable/bg_text_try_again"
+                        android:onClick="@{viewModel.clickReTryListener}"
+                        android:paddingHorizontal="@dimen/view_margin_s"
+                        android:paddingVertical="@dimen/view_margin_xs"
+                        android:text="@string/text_try_again"
+                        android:textColor="@color/royal_blue"
+                        android:textSize="@dimen/text_size_medium" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </FrameLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

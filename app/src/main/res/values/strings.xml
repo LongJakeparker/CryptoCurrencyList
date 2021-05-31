@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CoinHako</string>
+    <string name="text_title_lucky_coins">Your lucky coin(s)</string>
+    <string name="text_title_collect_lucky_coins">Click to collect your Lucky Coins</string>
+    <string name="text_title_list_currency">Your currencies</string>
+    <string name="text_status_night_mode_on">Night Mode: ON</string>
+    <string name="text_status_night_mode_off">Night Mode: OFF</string>
+    <string name="text_error">Oops!! Something went wrong\nPlease try again later</string>
+    <string name="text_try_again">Try Again</string>
+    <string name="text_hint_search">Search</string>
+    <string name="text_currency_not_found">Currency not found</string>
+</resources>

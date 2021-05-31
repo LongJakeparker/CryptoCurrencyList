@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.coinhako.model.CryptoCurrency" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:onClick="@{clickListener}"
+        android:padding="@dimen/view_margin_m">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCoin"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:srcUrl="@{item.icon}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCoinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_s"
+            android:text="@{item.name}"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvCoinBase"
+            app:layout_constraintStart_toEndOf="@id/ivCoin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_weight="1"
+            tools:text="Bitcoin" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCoinBase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_xs"
+            android:text="@{item.base}"
+            android:textSize="@dimen/text_size_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvCoinName"
+            app:layout_constraintTop_toBottomOf="@+id/tvCoinName"
+            app:layout_constraintVertical_weight="1"
+            tools:text="BTC" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_s"
+            android:background="@drawable/bg_text_lucky_coin"
+            android:paddingHorizontal="@dimen/view_margin_s"
+            android:paddingVertical="@dimen/view_margin_xs"
+            android:text="Lucky Coin"
+            android:textColor="#d1b31b"
+            android:textSize="@dimen/text_size_small"
+            android:viewVisible="@{item.lucky}"
+            android:visibility="gone"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvCoinBase"
+            app:layout_constraintStart_toEndOf="@id/tvCoinBase" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSellPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.sellPrice + ` ` + item.counter}"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvBuyPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_weight="1"
+            tools:text="177.505 USD" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBuyPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_s"
+            android:text="@{item.buyPrice + ` ` + item.counter}"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_size_medium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSellPrice"
+            app:layout_constraintVertical_weight="1"
+            tools:text="177.505 USD" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
